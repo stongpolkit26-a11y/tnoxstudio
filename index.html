@@ -3,136 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNOX STUDIO | THE ULTIMATE LUXURY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <title>TNOX_API_V1.json</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold-light: #f9f295;
-            --gold-mid: #e0aa3e;
-            --gold-dark: #b8860b;
-            --shadow-3d: rgba(0, 0, 0, 0.6);
-        }
-
         body {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            margin: 0;
-            height: 100vh;
+            background-color: #0d0d0d; /* ดำด้าน */
+            color: #a9b7c6;
+            font-family: 'Fira Code', monospace;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-family: 'Montserrat', sans-serif;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             overflow: hidden;
         }
 
-        .luxury-wrapper {
-            text-align: center;
+        .code-window {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+            width: 90%;
+            max-width: 600px;
             position: relative;
         }
 
-        /* เทคนิคตัวอักษร 4D Gold */
-        .brand-4d {
-            font-size: 8rem; /* ขนาดใหญ่ยักษ์สะใจ */
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            margin: 0;
-            background: linear-gradient(to bottom, 
-                #f9f295 0%, 
-                #e0aa3e 25%, 
-                #b8860b 50%, 
-                #e0aa3e 75%, 
-                #f9f295 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* สร้างมิติ 3D ด้วย Layer Shadow */
-            filter: drop-shadow(0 1px 0 #b8860b)
-                    drop-shadow(0 2px 0 #b8860b)
-                    drop-shadow(0 3px 0 #b8860b)
-                    drop-shadow(0 4px 0 #b8860b)
-                    drop-shadow(0 15px 20px rgba(0,0,0,1));
-            
-            animation: float 4s ease-in-out infinite; /* เอฟเฟกต์ลอยได้ */
-        }
-
-        .studio-text {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 25px;
-            color: #fff;
-            margin-top: -10px;
-            opacity: 0.9;
-            text-shadow: 0 0 15px rgba(224, 170, 62, 0.5);
-        }
-
-        /* เอฟเฟกต์ลอยขึ้นลงแบบนุ่มนวล */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* ปุ่มกดแบบ VIP */
-        .btn-container {
-            margin-top: 60px;
-        }
-
-        .vip-button {
-            text-decoration: none;
-            color: var(--gold-mid);
-            border: 1px solid var(--gold-mid);
-            padding: 15px 40px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.8rem;
-            transition: 0.4s;
-            position: relative;
-            background: rgba(0,0,0,0.3);
-        }
-
-        .vip-button:hover {
-            background: var(--gold-mid);
-            color: #000;
-            box-shadow: 0 0 30px var(--gold-mid);
-            letter-spacing: 8px;
-        }
-
-        /* ตกแต่งพื้นหลังด้วยประกายทอง */
-        .sparkle {
+        /* หัวหน้าต่างแบบ Mac */
+        .window-header {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle 2s infinite;
+            top: 15px;
+            left: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        pre { margin: 0; white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
+
+        /* Syntax Highlighting สีทอง-เขียว */
+        .key { color: #d4af37; font-weight: bold; } /* สีทอง */
+        .string { color: #6a8759; } /* สีเขียวขี้ม้าแบบ Hacker */
+        .number { color: #6897bb; } /* สีฟ้า */
+        .bracket { color: #cc7832; } /* สีส้ม */
+        .boolean { color: #cc7832; font-weight: bold; }
+        .comment { color: #808080; font-style: italic; }
+
+        /* Cursor กระพริบ */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #d4af37;
+            animation: blink 1s infinite;
+            vertical-align: middle;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Responsive สำหรับมือถือ */
-        @media (max-width: 768px) {
-            .brand-4d { font-size: 3.5rem; letter-spacing: 5px; }
-            .studio-text { font-size: 1rem; letter-spacing: 10px; }
+        /* ปุ่ม Action ด้านล่าง */
+        .actions {
+            margin-top: 20px;
+            text-align: right;
+            border-top: 1px solid #333;
+            padding-top: 15px;
         }
+        .btn {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 15px;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #d4af37; color: #000; }
+
     </style>
 </head>
 <body>
 
-    <div class="luxury-wrapper">
-        <h1 class="brand-4d">TNOX</h1>
-        <div class="studio-text">STUDIO</div>
+    <div class="code-window">
+        <div class="window-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
 
-        <div class="btn-container">
-            <a href="#" class="vip-button">Enter Experience</a>
+        <pre>
+<span class="bracket">{</span>
+  <span class="key">"status"</span>: <span class="number">200</span>,
+  <span class="key">"studio"</span>: <span class="string">"TNOX STUDIO"</span>,
+  <span class="key">"established"</span>: <span class="number">1970</span>,
+  <span class="key">"mode"</span>: <span class="string">"LUXURY_DEV"</span>,
+  <span class="key">"is_legendary"</span>: <span class="boolean">true</span>,
+  
+  <span class="key">"data"</span>: <span class="bracket">{</span>
+    <span class="key">"owner"</span>: <span class="string">"StongPolkit"</span>,
+    <span class="key">"expertise"</span>: <span class="bracket">[</span>
+      <span class="string">"Beat Maker"</span>,
+      <span class="string">"Visual Art"</span>,
+      <span class="string">"Web Master"</span>
+    <span class="bracket">]</span>,
+    <span class="key">"contact"</span>: <span class="string">"Encrypted..."</span>
+  <span class="bracket">}</span>,
+
+  <span class="comment">// Access Granted below:</span>
+  <span class="key">"links"</span>: <span class="bracket">[</span>
+    <span class="string">"youtube.com/@TNOX"</span>,
+    <span class="string">"t.me/VIP_GROUP"</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span><span class="cursor"></span>
+        </pre>
+
+        <div class="actions">
+            <a href="https://www.youtube.com/" class="btn">EXECUTE_YOUTUBE.exe</a>
         </div>
     </div>
-
-    <div class="sparkle" style="top: 20%; left: 30%;"></div>
-    <div class="sparkle" style="top: 70%; left: 80%;"></div>
-    <div class="sparkle" style="top: 40%; left: 10%;"></div>
 
 </body>
 </html>
