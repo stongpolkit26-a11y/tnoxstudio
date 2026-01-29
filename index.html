@@ -10,13 +10,16 @@
             --gold-primary: #d4af37;
             --gold-light: #f9f295;
             --gold-dark: #b8860b;
-            --bg-deep: #999B9B;
+            /* ปรับสีพื้นหลังเป็นเงินเข้มข้น */
+            --bg-deep: #1a1a1a; 
+            --silver-metal: #4a4a4a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-deep);
+            /* พื้นหลังเงินเข้มไล่เฉดแบบโลหะขัดเงา (Brushed Metal) */
+            background: radial-gradient(circle at center, var(--silver-metal) 0%, var(--bg-deep) 100%);
             color: white;
             font-family: 'Montserrat', sans-serif;
             display: flex;
@@ -24,9 +27,17 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
+            position: relative;
+        }
+
+        /* เพิ่ม Texture ความสว่างแบบโลหะเงิน */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: repeating-linear-gradient(45deg, rgba(255,255,255, 0.01) 0px, rgba(255,255,255, 0.01) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
         }
 
         .brand-container {
@@ -34,15 +45,17 @@
             position: relative;
             padding: 60px;
             z-index: 1;
+            /* เพิ่มเงาสะท้อนสีเงินจางๆ รอบตัวแบรนด์ */
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
         }
 
-        /* Luxury Gold Branding */
         .brand-name {
             font-family: 'Cinzel', serif;
             font-size: 10rem;
-            font-weight: 1000;
+            font-weight: 900;
             line-height: 1.0;
             margin-bottom: 20px;
+            /* ไล่เฉดทองให้จัดจ้านขึ้นเพื่อตัดกับสีเงินเข้ม */
             background: linear-gradient(to bottom, 
                 var(--gold-light) 22%, 
                 var(--gold-primary) 45%, 
@@ -51,7 +64,7 @@
                 var(--gold-light) 78%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
+            filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.8));
             letter-spacing: 15px;
             text-transform: uppercase;
         }
@@ -59,17 +72,17 @@
         .brand-subtitle {
             font-size: 2.0rem;
             letter-spacing: 20px;
-            color: #fff;
-            margin-left: 20px; /* Offset for centering letters */
+            color: var(--gold-light); /* ปรับซับไตเติ้ลเป็นสีทองสว่าง */
+            margin-left: 20px;
             text-transform: uppercase;
             font-weight: 200;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .divider {
-            width: 50px;
+            width: 150px;
             height: 1px;
-            background: var(--gold-primary);
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
             margin: 40px auto;
             position: relative;
         }
@@ -78,10 +91,11 @@
             content: '⬥';
             color: var(--gold-primary);
             position: absolute;
-            top: -12px;
+            top: -11px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 15px;
+            text-shadow: 0 0 10px var(--gold-primary);
         }
 
         .cta-links {
@@ -100,38 +114,28 @@
             position: relative;
             padding: 10px;
             transition: 0.5s;
-        }
-
-        .luxury-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 1px;
-            background: var(--gold-primary);
-            transition: 0.5s;
-            transform: translateX(-50%);
+            border: 1px solid rgba(212, 175, 55, 0.3); /* ขอบทองจางๆ บนปุ่ม */
+            border-radius: 2px;
         }
 
         .luxury-link:hover {
             color: var(--gold-primary);
             letter-spacing: 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        .luxury-link:hover::after {
-            width: 100px;
-        }
-
-        /* Branding Elements */
         .establishment {
             position: absolute;
-            bottom: -100px;
+            bottom: 40px;
             width: 100%;
-            font-size: 1.0rem;
+            font-size: 0.8rem;
             letter-spacing: 10px;
-            opacity: 0.4;
+            opacity: 0.5;
             text-transform: uppercase;
+            color: var(--gold-primary);
+            text-align: center;
         }
     </style>
 </head>
@@ -144,11 +148,11 @@
         <div class="divider"></div>
 
         <div class="cta-links">
-            <a href="https://www.youtube.com/@tnoxstudio" class="luxury-link">YOUTUBE</a>
+            <a href="https://www.youtube.com/@tnoxstudio" class="luxury-link">VISIT YOUTUBE</a>
         </div>
-
-        <div class="establishment">TNOX STUDIO</div>
     </div>
+
+    <div class="establishment">TNOX STUDIO</div>
 
 </body>
 </html>
