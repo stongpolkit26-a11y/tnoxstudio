@@ -1,138 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TNOX STUDIO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-light: #f9f295;
-            --gold-mid: #e0aa3e;
-            --gold-dark: #b8860b;
-            --shadow-3d: rgba(0, 0, 0, 0.6);
+            --gold-light: #fff5c2;
+            --gold-mid: #f0d38a;
+            --gold-dark: #c99a2e;
+            --gold-metallic: #d4af37;
+            --black-deep: #0a0a0a;
         }
 
         body {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             margin: 0;
             height: 100vh;
+            background: var(--black-deep);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            position: relative;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(212,175,55,0.06) 0%, transparent 60%);
+            animation: subtleMove 25s ease infinite;
+            pointer-events: none;
+        }
+
+        @keyframes subtleMove {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
             overflow: hidden;
         }
 
-        .luxury-wrapper {
-            text-align: center;
+        .particle {
+            position: absolute;
+            background: var(--gold-metallic);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--gold-mid);
+            opacity: 0;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(120vh) scale(0.3); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-30vh) scale(0.8); opacity: 0; }
+        }
+
+        .luxury-wrapper { position: relative; z-index: 2; text-align: center; }
+
+        .brand-4d {
+            font-size: 13rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 20px;
+            background: linear-gradient(135deg, #fff5c2 0%, #ffd700 25%, #d4af37 50%, #b8860b 75%, #d4af37 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: 
+                drop-shadow(6px 6px 4px #b8860b)
+                drop-shadow(-4px -4px 6px #fff5c2)
+                drop-shadow(0 25px 50px rgba(0,0,0,0.9));
+            animation: float3d 7s ease-in-out infinite, facetShine 4.5s linear infinite;
             position: relative;
         }
 
-        /* เทคนิคตัวอักษร 4D Gold */
-        .brand-4d {
-            font-size: 8rem; /* ขนาดใหญ่ยักษ์สะใจ */
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            margin: 0;
-            background: linear-gradient(to bottom, 
-                #f9f295 0%, 
-                #e0aa3e 25%, 
-                #b8860b 50%, 
-                #e0aa3e 75%, 
-                #f9f295 100%);
+        .brand-4d::before {
+            content: "TNOX";
+            position: absolute;
+            top: 6px; left: 6px;
+            background: inherit;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* สร้างมิติ 3D ด้วย Layer Shadow */
-            filter: drop-shadow(0 1px 0 #b8860b)
-                    drop-shadow(0 2px 0 #b8860b)
-                    drop-shadow(0 3px 0 #b8860b)
-                    drop-shadow(0 4px 0 #b8860b)
-                    drop-shadow(0 15px 20px rgba(0,0,0,1));
-            
-            animation: float 4s ease-in-out infinite; /* เอฟเฟกต์ลอยได้ */
+            opacity: 0.4;
+            filter: blur(3px);
+            z-index: -1;
+        }
+
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0) rotateX(2deg); }
+            50% { transform: translateY(-30px) rotateX(-2deg); }
+        }
+
+        @keyframes facetShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 200% 150%; }
+            100% { background-position: 0% 50%; }
         }
 
         .studio-text {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 25px;
-            color: #fff;
-            margin-top: -10px;
-            opacity: 0.9;
-            text-shadow: 0 0 15px rgba(224, 170, 62, 0.5);
+            font-weight: 900;
+            font-size: 2.8rem;
+            letter-spacing: 32px;
+            color: #e8d5a3;
+            margin-top: -25px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
         }
 
-        /* เอฟเฟกต์ลอยขึ้นลงแบบนุ่มนวล */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* ปุ่มกดแบบ VIP */
-        .btn-container {
-            margin-top: 60px;
-        }
+        .btn-container { margin-top: 90px; }
 
         .vip-button {
-            text-decoration: none;
-            color: var(--gold-mid);
-            border: 1px solid var(--gold-mid);
-            padding: 15px 40px;
+            padding: 20px 70px;
+            font-size: 1.05rem;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.8rem;
-            transition: 0.4s;
+            color: var(--gold-metallic);
+            border: 2px solid var(--gold-metallic);
+            background: rgba(10,10,10,0.85);
+            text-decoration: none;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            background: rgba(0,0,0,0.3);
+            overflow: hidden;
         }
 
         .vip-button:hover {
-            background: var(--gold-mid);
+            background: var(--gold-metallic);
             color: #000;
-            box-shadow: 0 0 30px var(--gold-mid);
-            letter-spacing: 8px;
+            letter-spacing: 12px;
+            box-shadow: 0 0 70px rgba(212,175,55,0.7);
+            transform: translateY(-5px);
         }
 
-        /* ตกแต่งพื้นหลังด้วยประกายทอง */
-        .sparkle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle 2s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Responsive สำหรับมือถือ */
         @media (max-width: 768px) {
-            .brand-4d { font-size: 3.5rem; letter-spacing: 5px; }
-            .studio-text { font-size: 1rem; letter-spacing: 10px; }
+            .brand-4d { font-size: 6.5rem; letter-spacing: 10px; }
+            .studio-text { font-size: 1.6rem; letter-spacing: 16px; margin-top: -15px; }
+            .vip-button { padding: 16px 50px; font-size: 0.95rem; letter-spacing: 5px; }
+        }
+
+        @media (max-width: 480px) {
+            .brand-4d { font-size: 4.8rem; letter-spacing: 6px; }
+            .studio-text { font-size: 1.3rem; letter-spacing: 12px; }
         }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
 
     <div class="luxury-wrapper">
         <h1 class="brand-4d">TNOX</h1>
         <div class="studio-text">STUDIO</div>
-
         <div class="btn-container">
             <a href="#" class="vip-button">Enter Experience</a>
         </div>
     </div>
 
-    <div class="sparkle" style="top: 20%; left: 30%;"></div>
-    <div class="sparkle" style="top: 70%; left: 80%;"></div>
-    <div class="sparkle" style="top: 40%; left: 10%;"></div>
-
+    <script>
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 28; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1.5;
+            p.style.width = p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}%`;
+            p.style.animationDuration = `${Math.random() * 18 + 14}s`;
+            p.style.animationDelay = `-${Math.random() * 15}s`;
+            container.appendChild(p);
+        }
+    </script>
 </body>
 </html>
