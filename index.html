@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNOX OFFICIAL STUDIO</title>
-    <!-- ใช้ Cinzel Heavy Font ตามภาพ -->
+    <title>TNOX OFFICIAL STUDIO - แบรนด์หรู</title>
+    <!-- ใช้ Google Fonts ที่จำเป็น -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
+        /* 1. CSS Reset & Variables (ตัวแปรสี) */
         :root {
-            /* Palette สีทองจากภาพ */
             --gold-primary: #d4af37;
             --gold-light: #f9f295;
             --gold-dark: #b8860b;
-            /* สีพื้นหลังเงินเข้มสนิท */
-            --bg-deep: #1a1a1a; 
+            --bg-deep: #1a1a1a; /* เงินเข้มสนิท */
             --silver-metal: #4a4a4a;
+            --text-color-light: #e0e0e0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        /* 2. Body Styling & Background (พื้นหลังหลัก) */
         body {
-            /* พื้นหลังสีเทาเข้มสนิท */
             background-color: var(--bg-deep);
-            color: white;
+            color: var(--text-color-light);
             font-family: 'Montserrat', sans-serif;
             display: flex;
             align-items: center;
@@ -32,136 +36,111 @@
             position: relative;
         }
 
-        /* เพิ่มเม็ดสีทองประกายเล็กๆ (Speckles) */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='5' cy='5' r='1' fill='%23b8860b'/%3E%3Ccircle cx='50' cy='50' r='1' fill='%23d4af37'/%3E%3Ccircle cx='95' cy='95' r='1' fill='%23f9f295'/%3E%3C/svg%3E");
-            background-size: 50px 50px;
-            opacity: 0.2;
-            pointer-events: none;
-        }
-
-
+        /* 3. Container & Layout (โครงสร้างเนื้อหา) */
         .brand-container {
             text-align: center;
             position: relative;
-            padding: 60px;
+            padding: 4rem 2rem; /* ใช้ rem เพื่อความยืดหยุ่น */
             z-index: 1;
+            max-width: 800px;
+            width: 90%;
         }
 
-        /* Luxury Gold Branding */
+        /* 4. Luxury 3D Gold Typography (ตัวอักษร TNOX 3D) */
         .brand-name {
             font-family: 'Cinzel', serif;
-            font-size: 10rem;
-            font-weight: 900; /* ใช้ 900 ตามภาพ */
+            font-size: 10rem; /* ปรับขนาดตามความเหมาะสมหน้าจอ */
+            font-weight: 900;
             line-height: 1.0;
-            margin-bottom: 20px;
-            
-            /* สร้างเอฟเฟกต์ความหนา 3D ที่มั่นคงและคมชัด */
-            text-shadow: 
-                /* จำลองความลึกของทองแท่ง */
-                1px 1px 0 var(--gold-dark),
-                2px 2px 0 var(--gold-dark),
-                3px 3px 0 var(--gold-dark),
-                4px 4px 0 var(--gold-dark),
-                5px 5px 0 var(--gold-dark),
-                6px 6px 0 var(--gold-dark),
-                7px 7px 0 var(--gold-dark),
-                8px 8px 0 var(--gold-dark),
-                9px 9px 0 var(--gold-dark),
-                10px 10px 15px rgba(0,0,0,0.8); /* เงาตกกระทบพื้น */
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.8rem;
+            text-transform: uppercase;
 
-            /* ไล่เฉดสีหน้าตัวอักษร */
-            background: linear-gradient(to bottom, 
-                var(--gold-light) 0%, 
-                var(--gold-primary) 50%, 
-                var(--gold-dark) 100%);
+            /* เทคนิคสร้างความหนา 3D ด้วย Shadow ซ้อนทับ */
+            text-shadow: 
+                1px 1px 0 var(--gold-dark), 2px 2px 0 var(--gold-dark),
+                3px 3px 0 var(--gold-dark), 4px 4px 0 var(--gold-dark),
+                5px 5px 0 var(--gold-dark), 6px 6px 0 var(--gold-dark),
+                7px 7px 0 var(--gold-dark), 8px 8px 0 var(--gold-dark),
+                9px 9px 0 var(--gold-dark), 10px 10px 1.5rem rgba(0,0,0,0.8);
+
+            /* ไล่เฉดสีทองด้านหน้า */
+            background: linear-gradient(to bottom, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 10px;
-            text-transform: uppercase;
         }
 
-        /* เงาสะท้อนที่พื้น (Reflection) */
+        /* 5. Reflection Effect (เงาสะท้อนที่พื้น) */
         .brand-name::after {
             content: "TNOX";
             position: absolute;
-            top: 100%;
+            bottom: 1rem;
             left: 0;
             width: 100%;
             font-family: 'Cinzel', serif;
             font-size: 10rem;
             font-weight: 900;
-            letter-spacing: 10px;
+            letter-spacing: 0.8rem;
             text-align: center;
-            
-            /* พลิกกลับด้านและลดความโปร่งใส */
             transform: scaleY(-1);
-            opacity: 0.15;
-            
-            background: linear-gradient(to top, 
-                var(--gold-light) 0%, 
-                var(--gold-primary) 50%, 
-                var(--gold-dark) 100%);
+            opacity: 0.1; /* ลดความเข้มของเงาสะท้อนให้ดูสมจริง */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background: linear-gradient(to top, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
         }
 
         .brand-subtitle {
-            font-size: 2.0rem;
-            letter-spacing: 20px;
-            color: #fff;
-            margin-left: 15px; 
+            font-size: 1.5rem;
+            letter-spacing: 1.2rem;
+            color: var(--gold-light);
+            margin-left: 1.2rem;
             text-transform: uppercase;
             font-weight: 200;
-            opacity: 0.6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            opacity: 0.7;
         }
 
-        .divider {
-            width: 150px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
-            margin: 40px auto;
-            position: relative;
-        }
+        /* 6. Button Styling (ปุ่ม YouTube หรูหรา) */
+        .cta-links { margin-top: 3rem; }
 
-        .divider::after {
-            content: '⬥';
-            color: var(--gold-primary);
-            position: absolute;
-            top: -11px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 15px;
-            text-shadow: 0 0 10px var(--gold-primary);
-        }
-
-        .cta-links {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 50px;
-        }
-        /* ลิ้งค์ YouTube แบบเรียบง่าย */
         .luxury-link {
             text-decoration: none;
             color: var(--gold-primary);
-            font-size: 1.0rem;
-            letter-spacing: 5px;
+            font-size: 1rem;
+            letter-spacing: 0.3rem;
             text-transform: uppercase;
-            padding: 10px;
-            transition: 0.3s;
-            opacity: 0.8;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid var(--gold-dark);
+            border-radius: 3px;
+            display: inline-block;
+            font-weight: 700;
         }
+
         .luxury-link:hover {
-            opacity: 1;
-            text-shadow: 0 0 10px var(--gold-primary);
+            background-color: var(--gold-primary);
+            color: var(--bg-deep);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            letter-spacing: 0.4rem;
+        }
+        
+        /* 7. Responsive Design (ทำให้รองรับมือถือ) */
+        @media (max-width: 768px) {
+            .brand-name {
+                font-size: 4rem; /* ลดขนาด font บนมือถือ */
+                letter-spacing: 0.5rem;
+            }
+            .brand-name::after {
+                font-size: 4rem;
+                letter-spacing: 0.5rem;
+            }
+            .brand-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 0.5rem;
+                margin-left: 0.5rem;
+            }
+            .luxury-link {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -171,11 +150,10 @@
         <div class="brand-name">TNOX</div>
         <div class="brand-subtitle">STUDIO</div>
         
-        <div class="divider"></div>
-
         <div class="cta-links">
-            <a href="https://www.youtube.com" class="luxury-link">YOUTUBE CHANNEL</a>
+            <a href="https://www.youtube.com" class="luxury-link">VISIT YOUTUBE</a>
         </div>
     </div>
+
 </body>
 </html>
