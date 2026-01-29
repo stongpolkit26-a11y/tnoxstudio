@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TNOX OFFICIAL STUDIO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <!-- ใช้ Cinzel Heavy Font ตามภาพ -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
+            /* Palette สีทองจากภาพ */
             --gold-primary: #d4af37;
             --gold-light: #f9f295;
             --gold-dark: #b8860b;
-            /* ปรับสีพื้นหลังเป็นเงินเข้มข้น */
+            /* สีพื้นหลังเงินเข้มสนิท */
             --bg-deep: #1a1a1a; 
             --silver-metal: #4a4a4a;
         }
@@ -18,8 +20,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            /* พื้นหลังเงินเข้มไล่เฉดแบบโลหะขัดเงา (Brushed Metal) */
-            background: radial-gradient(circle at center, var(--silver-metal) 0%, var(--bg-deep) 100%);
+            /* พื้นหลังสีเทาเข้มสนิท */
+            background-color: var(--bg-deep);
             color: white;
             font-family: 'Montserrat', sans-serif;
             display: flex;
@@ -30,53 +32,95 @@
             position: relative;
         }
 
-        /* เพิ่ม Texture ความสว่างแบบโลหะเงิน */
+        /* เพิ่มเม็ดสีทองประกายเล็กๆ (Speckles) */
         body::before {
             content: "";
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background-image: repeating-linear-gradient(45deg, rgba(255,255,255, 0.01) 0px, rgba(255,255,255, 0.01) 1px, transparent 1px, transparent 2px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='5' cy='5' r='1' fill='%23b8860b'/%3E%3Ccircle cx='50' cy='50' r='1' fill='%23d4af37'/%3E%3Ccircle cx='95' cy='95' r='1' fill='%23f9f295'/%3E%3C/svg%3E");
+            background-size: 50px 50px;
+            opacity: 0.2;
             pointer-events: none;
         }
+
 
         .brand-container {
             text-align: center;
             position: relative;
             padding: 60px;
             z-index: 1;
-            /* เพิ่มเงาสะท้อนสีเงินจางๆ รอบตัวแบรนด์ */
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
         }
 
+        /* Luxury Gold Branding */
         .brand-name {
             font-family: 'Cinzel', serif;
             font-size: 10rem;
-            font-weight: 900;
+            font-weight: 900; /* ใช้ 900 ตามภาพ */
             line-height: 1.0;
             margin-bottom: 20px;
-            /* ไล่เฉดทองให้จัดจ้านขึ้นเพื่อตัดกับสีเงินเข้ม */
+            
+            /* สร้างเอฟเฟกต์ความหนา 3D ที่มั่นคงและคมชัด */
+            text-shadow: 
+                /* จำลองความลึกของทองแท่ง */
+                1px 1px 0 var(--gold-dark),
+                2px 2px 0 var(--gold-dark),
+                3px 3px 0 var(--gold-dark),
+                4px 4px 0 var(--gold-dark),
+                5px 5px 0 var(--gold-dark),
+                6px 6px 0 var(--gold-dark),
+                7px 7px 0 var(--gold-dark),
+                8px 8px 0 var(--gold-dark),
+                9px 9px 0 var(--gold-dark),
+                10px 10px 15px rgba(0,0,0,0.8); /* เงาตกกระทบพื้น */
+
+            /* ไล่เฉดสีหน้าตัวอักษร */
             background: linear-gradient(to bottom, 
-                var(--gold-light) 22%, 
-                var(--gold-primary) 45%, 
-                var(--gold-dark) 50%, 
-                var(--gold-primary) 55%, 
-                var(--gold-light) 78%);
+                var(--gold-light) 0%, 
+                var(--gold-primary) 50%, 
+                var(--gold-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.8));
-            letter-spacing: 15px;
+            letter-spacing: 10px;
             text-transform: uppercase;
+        }
+
+        /* เงาสะท้อนที่พื้น (Reflection) */
+        .brand-name::after {
+            content: "TNOX";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            font-family: 'Cinzel', serif;
+            font-size: 10rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            text-align: center;
+            
+            /* พลิกกลับด้านและลดความโปร่งใส */
+            transform: scaleY(-1);
+            opacity: 0.15;
+            
+            background: linear-gradient(to top, 
+                var(--gold-light) 0%, 
+                var(--gold-primary) 50%, 
+                var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .brand-subtitle {
             font-size: 2.0rem;
             letter-spacing: 20px;
-            color: var(--gold-light); /* ปรับซับไตเติ้ลเป็นสีทองสว่าง */
-            margin-left: 20px;
+            color: #fff;
+            margin-left: 15px; 
             text-transform: uppercase;
             font-weight: 200;
-            opacity: 0.9;
+            opacity: 0.6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .divider {
@@ -104,38 +148,20 @@
             gap: 25px;
             margin-top: 50px;
         }
-
+        /* ลิ้งค์ YouTube แบบเรียบง่าย */
         .luxury-link {
             text-decoration: none;
-            color: #fff;
+            color: var(--gold-primary);
             font-size: 1.0rem;
             letter-spacing: 5px;
             text-transform: uppercase;
-            position: relative;
             padding: 10px;
-            transition: 0.5s;
-            border: 1px solid rgba(212, 175, 55, 0.3); /* ขอบทองจางๆ บนปุ่ม */
-            border-radius: 2px;
+            transition: 0.3s;
+            opacity: 0.8;
         }
-
         .luxury-link:hover {
-            color: var(--gold-primary);
-            letter-spacing: 8px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--gold-primary);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
-
-        .establishment {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            font-size: 0.8rem;
-            letter-spacing: 10px;
-            opacity: 0.5;
-            text-transform: uppercase;
-            color: var(--gold-primary);
-            text-align: center;
+            opacity: 1;
+            text-shadow: 0 0 10px var(--gold-primary);
         }
     </style>
 </head>
@@ -148,11 +174,8 @@
         <div class="divider"></div>
 
         <div class="cta-links">
-            <a href="https://www.youtube.com/@tnoxstudio" class="luxury-link">VISIT YOUTUBE</a>
+            <a href="https://www.youtube.com" class="luxury-link">YOUTUBE CHANNEL</a>
         </div>
     </div>
-
-    <div class="establishment">TNOX STUDIO</div>
-
 </body>
 </html>
