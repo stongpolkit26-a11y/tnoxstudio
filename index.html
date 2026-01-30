@@ -4,17 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TNOX GOLD | Investment & Bespoke Jewelry</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <meta name="description" content="TNOX GOLD offers world-class investment-grade gold and bespoke high-end jewelry. Purest form, ultimate luxury.">
+    <meta name="keywords" content="TNOX GOLD, luxury gold, investment gold, bespoke jewelry, high-end jewelry, 24K gold, custom jewelry">
+    <meta name="author" content="TNOX Atelier">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.tnoxgold.com/">
+    <meta property="og:title" content="TNOX GOLD | World-Class Investment & Bespoke Jewelry">
+    <meta property="og:description" content="TNOX GOLD offers world-class investment-grade gold and bespoke high-end jewelry. Purest form, ultimate luxury.">
+    <meta property="og:image" content="https://www.tnoxgold.com/images/og-image.jpg"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.tnoxgold.com/">
+    <meta property="twitter:title" content="TNOX GOLD | World-Class Investment & Bespoke Jewelry">
+    <meta property="twitter:description" content="TNOX GOLD offers world-class investment-grade gold and bespoke high-end jewelry. Purest form, ultimate luxury.">
+    <meta property="twitter:image" content="https://www.tnoxgold.com/images/twitter-image.jpg"> <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" id="mainNavbar">
         <div class="logo">TNOX GOLD</div>
         <div class="nav-links">
-            <a href="#">COLLECTIONS</a>
-            <a href="#">INVESTMENT</a>
-            <a href="#">BESPOKE</a>
-            <a href="#">CONTACT</a>
+            <a href="#collections">COLLECTIONS</a>
+            <a href="#investment">INVESTMENT</a>
+            <a href="#bespoke">BESPOKE</a>
+            <a href="#contact">CONTACT</a>
         </div>
     </nav>
 
@@ -29,22 +44,22 @@
     <section class="grid-section" id="collections">
         <h2 class="section-title">MASTER CRAFTED COLLECTIONS</h2>
         <div class="product-grid">
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1611085583191-a3b13b24424a?auto=format&fit=crop&q=80&w=600" alt="Necklace">
+            <div class="item" data-product-id="necklaces-001" data-product-name="Necklaces & Pendants">
+                <img src="https://images.unsplash.com/photo-1611085583191-a3b13b24424a?auto=format&fit=crop&q=80&w=600" alt="Necklaces & Pendants">
                 <div class="item-info">
                     <h3>NECKLACES & PENDANTS</h3>
                     <p>VIEW ALL</p>
                 </div>
             </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&q=80&w=600" alt="Ring">
+            <div class="item" data-product-id="rings-002" data-product-name="Rings & Bands">
+                <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&q=80&w=600" alt="Rings & Bands">
                 <div class="item-info">
                     <h3>RINGS & BANDS</h3>
                     <p>VIEW ALL</p>
                 </div>
             </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1617043786394-f977fa12eddf?auto=format&fit=crop&q=80&w=600" alt="Bracelet">
+            <div class="item" data-product-id="bracelets-003" data-product-name="Bracelets & Bangles">
+                <img src="https://images.unsplash.com/photo-1617043786394-f977fa12eddf?auto=format&fit=crop&q=80&w=600" alt="Bracelets & Bangles">
                 <div class="item-info">
                     <h3>BRACELETS & BANGLES</h3>
                     <p>VIEW ALL</p>
@@ -53,20 +68,57 @@
         </div>
     </section>
 
-    <section class="split-section">
+    <section class="split-section" id="investment">
         <div class="text-block">
             <h2>INVESTMENT GRADE GOLD</h2>
-            <p>Secure your future with the purest 24K bullion bars and certified quality.</p>
-            <button class="btn-gold-flat">DESIGN YOUR GOLD</button>
+            <p>Secure your future with the purest 24K bullion bars and certified for authenticity and quality assurance. Diversify your portfolio with tangible assets.</p>
+            <button class="btn-gold-flat">INVEST NOW</button>
+            <small>Gold ID: 2026INVG003713.4GB</small>
         </div>
         <div class="image-block">
-            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&q=80&w=800" alt="Gold Bars">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&q=80&w=800" alt="Gold Bars Investment">
+        </div>
+    </section>
+
+    <section class="grid-section alternate-bg" id="bespoke">
+        <h2 class="section-title">BESPOKE CREATIONS</h2>
+        <div class="product-grid bespoke-grid">
+            <div class="item wide">
+                <img src="https://images.unsplash.com/photo-1596700868884-ec409fcf197c?auto=format&fit=crop&q=80&w=1200" alt="Custom Gold Design">
+                <div class="item-info">
+                    <h3>YOUR UNIQUE VISION</h3>
+                    <p>DESIGN YOUR GOLD</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=600" alt="Custom Ring">
+                <div class="item-info">
+                    <h3>HANDCRAFTED RINGS</h3>
+                    <p>VIEW GALLERY</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2>PRIVATE CONSULTATION</h2>
+            <p>Visit our exclusive showroom or contact us for a private consultation regarding your bespoke needs or investment strategy.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit" class="btn-gold">SEND ENQUIRY</button>
+            </form>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 TNOX GOLD. ALL RIGHTS RESERVED.</p>
-        <p>WORLDWIDE SHIPPING. CERTIFIED QUALITY.</p>
+        <p>WORLDWIDE INSURED SHIPPING. CERTIFIED QUALITY.</p>
+        <p>FOLLOW US: <a href="#" target="_blank">IG</a> / <a href="#" target="_blank">FB</a></p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
