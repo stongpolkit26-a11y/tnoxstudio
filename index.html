@@ -1,134 +1,134 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNOX STUDIO | Music Production</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: #000;
-            color: #fff;
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            text-align: center;
-            padding: 40px 20px;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        /* โลโก้แบบตัวอักษรเรียบหรู */
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            letter-spacing: 8px;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #d4af37, #f9f295, #b8860b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-
-        .tagline {
-            color: #888;
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-        }
-
-        /* เมนูบริการ */
-        .service-card {
-            background: #111;
-            border: 1px solid #222;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: 0.3s;
-            border-radius: 4px;
-        }
-
-        .service-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-5px);
-        }
-
-        .service-name {
-            display: block;
-            font-size: 1.1rem;
-            color: #d4af37;
-            margin-bottom: 5px;
-        }
-
-        .service-price {
-            color: #fff;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        /* ปุ่มติดต่อ */
-        .btn-group {
-            margin-top: 40px;
-        }
-
-        .btn {
-            display: block;
-            background: transparent;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 15px;
-            text-decoration: none;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .btn:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        .btn-main {
-            background: #d4af37;
-            border-color: #d4af37;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .btn-main:hover {
-            background: #f9f295;
-            border-color: #f9f295;
-        }
-    </style>
+    <title>TNOX | Exclusive Atelier</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <div class="container">
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="#collections">Collections</a>
+            <a href="#atelier">Atelier</a>
+        </div>
         <div class="logo">TNOX</div>
-        <div class="tagline">Studio & Production</div>
-
-        <div class="service-card">
-            <span class="service-name">Exclusive Beats</span>
-            <span class="service-price">บีทพร้อมลิขสิทธิ์ขาด - เริ่มต้น 2,xxx.-</span>
+        <div class="nav-right">
+            <a href="#"><i data-lucide="search"></i></a>
+            <a href="#"><i data-lucide="shopping-bag"></i></a>
+            <a href="#" class="menu-toggle"><i data-lucide="menu"></i></a>
         </div>
+    </nav>
 
-        <div class="service-card">
-            <span class="service-name">Mixing & Mastering</span>
-            <span class="service-price">มิกซ์และมาสเตอร์ริ่ง - เริ่มต้น 1,xxx.-</span>
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="subtitle">Autumn / Winter 2024</span>
+            <h1>The Silent Statement</h1>
+            <p>Premium craftsmanship. Timeless silhouettes. Defined by TNOX.</p>
+            <a href="#shop" class="btn-primary">Explore Collection</a>
         </div>
+    </header>
 
-        <div class="btn-group">
-            <a href="https://youtube.com/" class="btn btn-main">ฟังผลงาน (PORTFOLIO)</a>
-            <a href="https://line.me/" class="btn">สั่งทำเพลง / ติดต่องาน</a>
+    <section class="categories" id="collections">
+        <div class="container">
+            <div class="category-grid">
+                <div class="category-item large">
+                    <img src="https://images.unsplash.com/photo-1539106604051-9b998398055d?auto=format&fit=crop&q=80&w=1000" alt="Menswear">
+                    <div class="cat-label">
+                        <h2>The Modern Man</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800" alt="Womenswear">
+                    <div class="cat-label">
+                        <h2>Signature Silk</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800" alt="Accessories">
+                    <div class="cat-label">
+                        <h2>Fine Leather</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <section class="products" id="shop">
+        <div class="section-header">
+            <h2>New Arrivals</h2>
+            <p>Elegance in every stitch.</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c7176c8?auto=format&fit=crop&q=80&w=600" alt="Product">
+                    <button class="add-to-cart">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Wool Cashmere Overcoat</h3>
+                    <span>$1,450.00</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&q=80&w=600" alt="Product">
+                    <button class="add-to-cart">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Structured Linen Blazer</h3>
+                    <span>$890.00</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1515347644552-dac2994c47e7?auto=format&fit=crop&q=80&w=600" alt="Product">
+                    <button class="add-to-cart">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Velvet Evening Gown</h3>
+                    <span>$2,100.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h2>TNOX</h2>
+                <p>Exclusive luxury clothing for the modern individual.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Client Services</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Shipping & Returns</a>
+                    <a href="#">Sizing Guide</a>
+                </div>
+                <div class="link-group">
+                    <h4>About</h4>
+                    <a href="#">Our Story</a>
+                    <a href="#">Sustainability</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TNOX ATELIER. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
