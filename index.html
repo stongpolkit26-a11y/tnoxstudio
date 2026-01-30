@@ -3,279 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TNOX STUDIO — World-class luxury digital experience studio">
-    <title>TNOX STUDIO</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
-    
+    <title>TNOX STUDIO | Music Production</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold-1: #f9f0d0;
-            --gold-2: #f0d38a;
-            --gold-3: #d4af37;
-            --gold-4: #b8972e;
-            --gold-dark: #8b6914;
-            --black: #0c0c0c;
-            --deep-black: #050505;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background: var(--deep-black);
+            background: #000;
             color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Subtle noise texture */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: url('https://picsum.photos/id/1015/2000/2000') repeat;
-            opacity: 0.03;
-            mix-blend-mode: overlay;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 45px 70px;
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            mix-blend-mode: difference;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 6px;
-            color: var(--gold-3);
-        }
-
-        .nav-links a {
-            color: #ddd;
-            text-decoration: none;
-            margin-left: 55px;
-            font-size: 0.95rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            transition: color 0.4s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-3);
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            position: relative;
-            z-index: 2;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 15vw;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            line-height: 0.82;
-            background: linear-gradient(145deg, var(--gold-1), var(--gold-2), var(--gold-3), var(--gold-4));
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* โลโก้แบบตัวอักษรเรียบหรู */
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #d4af37, #f9f295, #b8860b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.95));
-            animation: floatHero 9s ease-in-out infinite;
-            position: relative;
-        }
-
-        .brand::before {
-            content: "TNOX";
-            position: absolute;
-            top: 18px;
-            left: 18px;
-            opacity: 0.25;
-            filter: blur(6px);
-            z-index: -1;
-        }
-
-        .studio {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
             font-weight: 700;
-            letter-spacing: 45px;
-            color: #d8c8a0;
-            margin-top: 20px;
-            text-shadow: 0 0 60px rgba(212,175,55,0.6);
         }
 
         .tagline {
-            margin-top: 60px;
-            font-size: 1.15rem;
-            letter-spacing: 8px;
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #a89f7e;
-            font-weight: 500;
+            margin-bottom: 50px;
         }
 
-        .cta {
-            margin-top: 90px;
-            padding: 24px 85px;
-            border: 2px solid var(--gold-3);
-            color: var(--gold-3);
-            text-transform: uppercase;
-            letter-spacing: 7px;
-            font-size: 1rem;
-            font-weight: 700;
+        /* เมนูบริการ */
+        .service-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            border-radius: 4px;
+        }
+
+        .service-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+
+        .service-name {
+            display: block;
+            font-size: 1.1rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .service-price {
+            color: #fff;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* ปุ่มติดต่อ */
+        .btn-group {
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: block;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 15px;
             text-decoration: none;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            font-size: 0.9rem;
         }
 
-        .cta:hover {
-            background: var(--gold-3);
-            color: var(--deep-black);
-            letter-spacing: 12px;
-            box-shadow: 0 0 90px rgba(212,175,55,0.65);
-            transform: translateY(-6px);
+        .btn:hover {
+            background: #fff;
+            color: #000;
         }
 
-        /* Section */
-        section {
-            padding: 160px 70px;
-            position: relative;
-            z-index: 2;
+        .btn-main {
+            background: #d4af37;
+            border-color: #d4af37;
+            color: #000;
+            font-weight: bold;
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 40px;
-            color: var(--gold-3);
-        }
-
-        .philosophy {
-            max-width: 680px;
-            font-size: 1.35rem;
-            line-height: 1.9;
-            color: #ccc;
-        }
-
-        /* Particles */
-        .particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--gold-3);
-            border-radius: 50%;
-            box-shadow: 0 0 12px var(--gold-2);
-            animation: floatParticle linear infinite;
-        }
-
-        @keyframes floatParticle {
-            0%   { transform: translateY(100vh) scale(0.2); opacity: 0; }
-            15%  { opacity: 0.7; }
-            85%  { opacity: 0.6; }
-            100% { transform: translateY(-60vh) scale(0.7); opacity: 0; }
-        }
-
-        @keyframes floatHero {
-            0%, 100% { transform: translateY(0) rotateX(4deg); }
-            50% { transform: translateY(-25px) rotateX(-3deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .brand { font-size: 11vw; }
-            .studio { font-size: 3rem; letter-spacing: 30px; }
-        }
-
-        @media (max-width: 640px) {
-            nav { padding: 30px 25px; }
-            .nav-links a { margin-left: 25px; font-size: 0.85rem; }
-            .brand { font-size: 14vw; }
-            .studio { font-size: 2rem; letter-spacing: 18px; margin-top: -30px; }
-            .section-title { font-size: 3.2rem; }
+        .btn-main:hover {
+            background: #f9f295;
+            border-color: #f9f295;
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <div class="container">
         <div class="logo">TNOX</div>
-        <div class="nav-links">
-            <a href="#">Work</a>
-            <a href="#">Studio</a>
-            <a href="#">Journal</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
+        <div class="tagline">Studio & Production</div>
 
-    <div class="hero">
-        <div class="particles" id="particles"></div>
-        
-        <h1 class="brand">TNOX</h1>
-        <div class="studio">STUDIO</div>
-        <div class="tagline">WELCOME TO TNOX • Managed by MR.STONG</div>
-        
-        <a href="https://www.youtube.com/@tnoxstudio" class="cta">VISIT TO YOUTUBE</a>
+        <div class="service-card">
+            <span class="service-name">Exclusive Beats</span>
+            <span class="service-price">บีทพร้อมลิขสิทธิ์ขาด - เริ่มต้น 2,xxx.-</span>
+        </div>
+
+        <div class="service-card">
+            <span class="service-name">Mixing & Mastering</span>
+            <span class="service-price">มิกซ์และมาสเตอร์ริ่ง - เริ่มต้น 1,xxx.-</span>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://youtube.com/" class="btn btn-main">ฟังผลงาน (PORTFOLIO)</a>
+            <a href="https://line.me/" class="btn">สั่งทำเพลง / ติดต่องาน</a>
+        </div>
     </div>
 
-    <section>
-        <h2 class="section-title">Our Philosophy</h2>
-        <p class="philosophy">
-            We believe true luxury lies in the unseen details — the perfect kerning, 
-            the subtle reflection of light, the silence between notes. 
-            Every project is approached with reverence, precision, and an unwavering 
-            commitment to timeless elegance.
-        </p>
-    </section>
-
-    <footer style="padding: 100px 70px; text-align: center; color: #555; font-size: 0.85rem; letter-spacing: 1px;">
-        © 2026 TNOX STUDIO • Bangkok • All Rights Reserved
-    </footer>
-
-    <script>
-        // Luxury Particles
-        const container = document.getElementById('particles');
-        for (let i = 0; i < 28; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            
-            const size = Math.random() * 2.5 + 1;
-            p.style.width = p.style.height = `${size}px`;
-            p.style.left = `${Math.random() * 100}%`;
-            p.style.top = `${Math.random() * 50 + 30}%`;
-            p.style.animationDuration = `${Math.random() * 25 + 18}s`;
-            p.style.animationDelay = `-${Math.random() * 20}s`;
-            p.style.opacity = Math.random() * 0.5 + 0.25;
-            
-            container.appendChild(p);
-        }
-    </script>
 </body>
 </html>
