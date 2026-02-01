@@ -1,60 +1,63 @@
-// Preloader Logic
+// Preloader
 window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.style.opacity = '0';
-        preloader.style.visibility = 'hidden';
-    }, 1000); // Show logo for 1 second then fade
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 800);
+        }, 800);
+    }
 });
 
-// Custom Cursor Logic
+// Dynamic Year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Custom Cursor
 const cursor = document.querySelector('.cursor');
 const cursorDot = document.querySelector('.cursor-dot');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+if (isTouchDevice) {
+    if (cursor) cursor.style.display = 'none';
+    if (cursorDot) cursorDot.style.display = 'none';
+}
 
 document.addEventListener('mousemove', (e) => {
-    // Check if elements exist to prevent errors on mobile where they are hidden
-    if(cursor && cursorDot) {
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-        
-        // Add a little lag to the outer circle for elegance
-        setTimeout(() => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        }, 50);
-    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
 
-// Hover Effect for Cursor
-document.querySelectorAll('a, .cta').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        if(cursor) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
-            cursor.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
-            cursor.style.border = 'none';
-        }
-    });
-    link.addEventListener('mouseleave', () => {
-        if(cursor) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.backgroundColor = 'transparent';
-            cursor.style.border = '1px solid #d4af37';
-        }
-    });
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.16;
+    cursorY += (mouseY - cursorY) * 0.16;
+
+    if (cursor) cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+    if (cursorDot) cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+
+    requestAnimationFrame(animateCursor);
+}
+if (!isTouchDevice) requestAnimationFrame(animateCursor);
+
+// Hover Effects
+document.querySelectorAll('a, .cta').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        if (cursor) cursor.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+        if (cursor) cursor.classList.remove('hover');
+    });
 });
 
-// Scroll Reveal Logic
-window.addEventListener('scroll', () => {
-    const reveals = document.querySelectorAll('.reveal-text');
-    const windowHeight = window.innerHeight;
-    
-    reveals.forEach(text => {
-        const revealTop = text.getBoundingClientRect().top;
-        if(revealTop < windowHeight - 100) {
-            text.classList.add('active');
-        }
-    });
-});
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
 
-
-****java
+document.querySelectorAll('.reveal-text').forEach(el => observer.observe(el));
