@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="TNOX Studio — We craft in real time. Managed by MR. STONG."/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TNOX Studio — Crafted in real time. Managed by MR. STONG.">
   <title>TNOX Studio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,69 +16,72 @@
 
   <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <div class="loader">TNOX</div>
+    <div class="preloader-text">TNOX</div>
   </div>
 
-  <!-- Navigation -->
+  <!-- Cursor layers -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Header -->
   <header class="header">
+    <div class="logo">TNOX</div>
+
     <nav class="nav">
-      <div class="logo">TNOX</div>
+      <ul class="nav-list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#studio">Studio</a></li>
+        <li><a href="#journal">Journal</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#studio">Studio</a></li>
-          <li><a href="#journal">Journal</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <button class="menu-toggle" aria-label="Toggle menu" id="menu-toggle">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Main content -->
   <main>
     <section class="hero">
-      <div class="hero-content">
+      <div class="hero-container">
         <h1 class="brand">TNOX</h1>
-        <p class="tagline">OFFICIAL STUDIO</p>
+        <p class="studio-label">OFFICIAL STUDIO</p>
 
-        <div class="drop-info">
-          <span class="live-indicator"></span>
-          <span>New Drop Daily — 10:15 & 18:15</span>
+        <div class="drop-notice">
+          <span class="live-dot"></span>
+          <span>New Drop Daily: 10:15 & 18:15</span>
         </div>
 
-        <a href="https://www.youtube.com/@tnoxstudio" target="_blank" rel="noopener" class="btn-primary">
+        <a href="https://www.youtube.com/@tnoxstudio" target="_blank" rel="noopener noreferrer" class="cta-button">
           Visit YouTube
         </a>
       </div>
     </section>
 
-    <!-- Philosophy -->
-    <section class="section-philosophy">
-      <div class="text-block reveal-on-scroll">
-        <p>We don’t chase trends.</p>
+    <section class="philosophy">
+      <div class="philosophy-text reveal">
+        <p>We don’t follow trends.</p>
         <p>We craft <span class="highlight">in real time</span>.</p>
-        <p>Managed by <span class="highlight">MR. STONG</span> —<br>where every detail is a promise of perfection.</p>
+        <p>Managed by <span class="highlight">MR. STONG</span>,<br>where every detail is a promise of perfection.</p>
       </div>
     </section>
   </main>
 
-  <!-- Marquee -->
-  <div class="marquee">
-    <div class="marquee-inner">
-      <span>TNOX STUDIO&nbsp;•&nbsp;THANK YOU FOR FOLLOWING&nbsp;•&nbsp;MAKE NO SENSE&nbsp;•&nbsp;MANAGED BY MR. STONG&nbsp;•&nbsp;OFFICIAL STUDIO&nbsp;•&nbsp;</span>
-      <span>TNOX STUDIO&nbsp;•&nbsp;THANK YOU FOR FOLLOWING&nbsp;•&nbsp;MAKE NO SENSE&nbsp;•&nbsp;MANAGED BY MR. STONG&nbsp;•&nbsp;OFFICIAL STUDIO&nbsp;•&nbsp;</span>
+  <!-- Marquee footer -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>TNOX STUDIO • THANK YOU FOR FOLLOWING • MAKE NO SENSE • MANAGED BY MR. STONG • OFFICIAL STUDIO • </span>
+      <span>TNOX STUDIO • THANK YOU FOR FOLLOWING • MAKE NO SENSE • MANAGED BY MR. STONG • OFFICIAL STUDIO • </span>
     </div>
   </div>
 
-  <!-- Overlay Menu -->
-  <div class="menu-overlay" id="menu-overlay">
-    <button class="menu-close" id="menu-close" aria-label="Close menu">×</button>
-    <nav class="menu-nav">
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="menu-close" id="menu-close" aria-label="Close navigation menu">×</button>
+    <nav class="mobile-nav">
       <ul>
         <li><a href="#work">Work</a></li>
         <li><a href="#studio">Studio</a></li>
@@ -88,6 +91,6 @@
     </nav>
   </div>
 
-  <script src="script.js" type="module"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
