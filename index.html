@@ -1,281 +1,364 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TNOX STUDIO — World-class luxury digital experience studio">
-    <title>TNOX STUDIO</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --gold-1: #f9f0d0;
-            --gold-2: #f0d38a;
-            --gold-3: #d4af37;
-            --gold-4: #b8972e;
-            --gold-dark: #8b6914;
-            --black: #0c0c0c;
-            --deep-black: #050505;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNOX STUDIO — Luxury Digital Experience</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold-light: #f9f0d0;
+            --gold-primary: #d4af37;
+            --gold-dark: #8b6914;
+            --bg-deep: #050505;
+            --glass: rgba(5, 5, 5, 0.7);
+            --cursor-size: 20px;
+        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* ซ่อนเมาส์ปกติ */ }
 
-        body {
-            background: var(--deep-black);
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        body {
+            background-color: var(--bg-deep);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
 
-        /* Subtle noise texture */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: url('https://picsum.photos/id/1015/2000/2000') repeat;
-            opacity: 0.03;
-            mix-blend-mode: overlay;
-            pointer-events: none;
-            z-index: 1;
-        }
+        /* --- CUSTOM CURSOR --- */
+        .cursor {
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 45px 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            mix-blend-mode: difference;
-        }
+        /* --- PRELOADER --- */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        .loader-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            color: var(--gold-primary);
+            animation: pulse 2s infinite;
+        }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 6px;
-            color: var(--gold-3);
-        }
+        /* --- NAVIGATION (Glassmorphism) --- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            transition: padding 0.5s ease;
+        }
 
-        .nav-links a {
-            color: #ddd;
-            text-decoration: none;
-            margin-left: 55px;
-            font-size: 0.95rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            transition: color 0.4s ease;
-        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+        }
 
-        .nav-links a:hover {
-            color: var(--gold-3);
-        }
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0%; height: 1px;
+            background: var(--gold-primary);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .nav-links a:hover { color: var(--gold-primary); }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
 
-        .brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 15vw;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            line-height: 0.82;
-            background: linear-gradient(145deg, var(--gold-1), var(--gold-2), var(--gold-3), var(--gold-4));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.95));
-            animation: floatHero 9s ease-in-out infinite;
-            position: relative;
-        }
+        .brand-wrapper {
+            position: relative;
+            overflow: hidden; /* For reveal effect */
+        }
 
-        .brand::before {
-            content: "TNOX";
-            position: absolute;
-            top: 18px;
-            left: 18px;
-            opacity: 0.25;
-            filter: blur(6px);
-            z-index: -1;
-        }
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 13vw;
+            line-height: 0.85;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 20%, var(--gold-primary) 50%, #8b6914 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0; /* Init hidden */
+            transform: translateY(50px);
+            animation: textReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+        }
 
-        .studio {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: 45px;
-            color: #d8c8a0;
-            margin-top: 20px;
-            text-shadow: 0 0 60px rgba(212,175,55,0.6);
-        }
+        .studio {
+            font-family: 'Cinzel', serif;
+            font-size: 2vw;
+            letter-spacing: 1.5em;
+            color: var(--gold-primary);
+            margin-top: 10px;
+            margin-right: -1.5em; /* Optical alignment */
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1.2s;
+        }
 
-        .tagline {
-            margin-top: 60px;
-            font-size: 1.15rem;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: #a89f7e;
-            font-weight: 500;
-        }
+        /* --- LIVE SCHEDULE BADGE (Personalized) --- */
+        .live-schedule {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1.8s;
+        }
 
-        .cta {
-            margin-top: 90px;
-            padding: 24px 85px;
-            border: 2px solid var(--gold-3);
-            color: var(--gold-3);
-            text-transform: uppercase;
-            letter-spacing: 7px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
+        .live-dot {
+            width: 8px; height: 8px;
+            background: red;
+            border-radius: 50%;
+            box-shadow: 0 0 10px red;
+            animation: blink 2s infinite;
+        }
 
-        .cta:hover {
-            background: var(--gold-3);
-            color: var(--deep-black);
-            letter-spacing: 12px;
-            box-shadow: 0 0 90px rgba(212,175,55,0.65);
-            transform: translateY(-6px);
-        }
+        .schedule-text {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+        }
 
-        /* Section */
-        section {
-            padding: 160px 70px;
-            position: relative;
-            z-index: 2;
-        }
+        /* --- CTA BUTTON --- */
+        .cta-container {
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 2s;
+        }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 40px;
-            color: var(--gold-3);
-        }
+        .cta {
+            position: relative;
+            padding: 20px 60px;
+            color: var(--gold-primary);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            display: inline-block;
+        }
 
-        .philosophy {
-            max-width: 680px;
-            font-size: 1.35rem;
-            line-height: 1.9;
-            color: #ccc;
-        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
 
-        /* Particles */
-        .particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
+        .cta:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+        
+        .cta:hover::before { left: 100%; }
 
-        .particle {
-            position: absolute;
-            background: var(--gold-3);
-            border-radius: 50%;
-            box-shadow: 0 0 12px var(--gold-2);
-            animation: floatParticle linear infinite;
-        }
+        /* --- PHILOSOPHY (Scroll Reveal) --- */
+        section {
+            padding: 150px 10%;
+            position: relative;
+        }
 
-        @keyframes floatParticle {
-            0%   { transform: translateY(100vh) scale(0.2); opacity: 0; }
-            15%  { opacity: 0.7; }
-            85%  { opacity: 0.6; }
-            100% { transform: translateY(-60vh) scale(0.7); opacity: 0; }
-        }
+        .reveal-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            line-height: 1.4;
+            color: #ccc;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        
+        .reveal-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        @keyframes floatHero {
-            0%, 100% { transform: translateY(0) rotateX(4deg); }
-            50% { transform: translateY(-25px) rotateX(-3deg); }
-        }
+        .gold-accent { color: var(--gold-primary); font-style: italic; }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .brand { font-size: 11vw; }
-            .studio { font-size: 3rem; letter-spacing: 30px; }
-        }
+        /* --- ANIMATIONS --- */
+        @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-        @media (max-width: 640px) {
-            nav { padding: 30px 25px; }
-            .nav-links a { margin-left: 25px; font-size: 0.85rem; }
-            .brand { font-size: 14vw; }
-            .studio { font-size: 2rem; letter-spacing: 18px; margin-top: -30px; }
-            .section-title { font-size: 3.2rem; }
-        }
-    </style>
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .brand { font-size: 18vw; }
+            .studio { font-size: 0.9rem; letter-spacing: 0.5em; }
+            .nav-links { display: none; } /* Hide menu for clean mobile look (or add hamburger) */
+            nav { justify-content: center; }
+            .reveal-text { font-size: 1.8rem; }
+            * { cursor: auto; } /* Restore cursor on touch */
+            .cursor, .cursor-dot { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">TNOX</div>
-        <div class="nav-links">
-            <a href="#">Work</a>
-            <a href="#">Studio</a>
-            <a href="#">Journal</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
 
-    <div class="hero">
-        <div class="particles" id="particles"></div>
-        
-        <h1 class="brand">TNOX</h1>
-        <div class="studio">STUDIO</div>
-        <div class="tagline">WELCOME TO TNOX • Managed by MR.STONG</div>
-        
-        <a href="https://www.youtube.com/@tnoxstudio" class="cta">VISIT TO YOUTUBE</a>
-    </div>
+    <div class="preloader" id="preloader">
+        <div class="loader-text">TNOX STUDIO</div>
+    </div>
 
-    <section>
-        <h2 class="section-title">Our Philosophy</h2>
-        <p class="philosophy">
-            We believe true luxury lies in the unseen details — the perfect kerning, 
-            the subtle reflection of light, the silence between notes. 
-            Every project is approached with reverence, precision, and an unwavering 
-            commitment to timeless elegance.
-        </p>
-    </section>
+    <nav>
+        <div class="logo">TNOX</div>
+        <div class="nav-links">
+            <a href="#">Work</a>
+            <a href="#">Studio</a>
+            <a href="#">Journal</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
 
-    <footer style="padding: 100px 70px; text-align: center; color: #555; font-size: 0.85rem; letter-spacing: 1px;">
-        © 2026 TNOX STUDIO • Bangkok • All Rights Reserved
-    </footer>
+    <div class="hero">
+        <div class="brand-wrapper">
+            <h1 class="brand">TNOX</h1>
+        </div>
+        <div class="studio">DIGITAL LUXURY STUDIO</div>
 
-    <script>
-        // Luxury Particles
-        const container = document.getElementById('particles');
-        for (let i = 0; i < 28; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            
-            const size = Math.random() * 2.5 + 1;
-            p.style.width = p.style.height = `${size}px`;
-            p.style.left = `${Math.random() * 100}%`;
-            p.style.top = `${Math.random() * 50 + 30}%`;
-            p.style.animationDuration = `${Math.random() * 25 + 18}s`;
-            p.style.animationDelay = `-${Math.random() * 20}s`;
-            p.style.opacity = Math.random() * 0.5 + 0.25;
-            
-            container.appendChild(p);
-        }
-    </script>
+        <div class="live-schedule">
+            <div class="live-dot"></div>
+            <div class="schedule-text">New Drop Daily: 10:15 & 18:15</div>
+        </div>
+
+        <div class="cta-container">
+            <a href="https://www.youtube.com/@tnoxstudio" class="cta">Explore Universe</a>
+        </div>
+    </div>
+
+    <section>
+        <p class="reveal-text">
+            We don't just design websites.<br>
+            We craft <span class="gold-accent">digital legacies</span>.
+            Managed by MR.STONG, where every pixel is a promise of perfection.
+        </p>
+    </section>
+
+    <footer style="text-align: center; padding: 50px; color: #444; font-size: 0.8rem; letter-spacing: 2px;">
+        &copy; 2026 TNOX STUDIO BANGKOK
+    </footer>
+
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 1000); // Show logo for 1 second then fade
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            // Add a little lag to the outer circle for elegance
+            setTimeout(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        // Hover Effect for Cursor
+        document.querySelectorAll('a, .cta').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                cursor.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                cursor.style.border = 'none';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'transparent';
+                cursor.style.border = '1px solid #d4af37';
+            });
+        });
+
+        // Scroll Reveal Logic
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal-text');
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(text => {
+                const revealTop = text.getBoundingClientRect().top;
+                if(revealTop < windowHeight - 100) {
+                    text.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
