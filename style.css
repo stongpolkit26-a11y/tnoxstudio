@@ -1,349 +1,237 @@
 :root {
-    --gold-light: #f9f0d0;
-    --gold-primary: #d4af37;
-    --gold-dark: #8b6914;
-    --bg-deep: #050505;
-    --glass: rgba(5, 5, 5, 0.7);
-    --cursor-size: 20px;
+    --gold-light: #f9f0d0;
+    --gold-primary: #d4af37;
+    --gold-dark: #8b6914;
+    --bg-deep: #050505;
+    --glass: rgba(5, 5, 5, 0.85);
+    --cursor-size: 1.4rem;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* ซ่อนเมาส์ปกติ */ }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-deep);
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+    background-color: var(--bg-deep);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* --- CUSTOM CURSOR --- */
+.cursor, .cursor-dot {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
 .cursor {
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border: 1px solid var(--gold-primary);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border: 1px solid var(--gold-primary);
+    border-radius: 50%;
+    mix-blend-mode: difference;
 }
+
 .cursor-dot {
-    width: 4px;
-    height: 4px;
-    background: var(--gold-primary);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: var(--gold-primary);
+    border-radius: 50%;
 }
 
-/* --- PRELOADER --- */
+/* Preloader */
 .preloader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 5000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease, visibility 1s ease;
-}
-.loader-text {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    letter-spacing: 10px;
-    color: var(--gold-primary);
-    animation: pulse 2s infinite;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease;
 }
 
-/* --- NAVIGATION (Glassmorphism) --- */
-nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    padding: 30px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-    transition: padding 0.5s ease;
+.loader-text {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    letter-spacing: 0.8em;
+    color: var(--gold-primary);
+    animation: pulse 3s infinite;
+}
+
+/* Navigation */
+header nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    z-index: 100;
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: 4px;
-    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
 }
 
 .nav-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    margin-left: 40px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    position: relative;
-    transition: color 0.3s;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; left: 0; width: 0%; height: 1px;
-    background: var(--gold-primary);
-    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    margin-left: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    position: relative;
 }
 
 .nav-links a:hover { color: var(--gold-primary); }
-.nav-links a:hover::after { width: 100%; }
 
-/* --- HERO SECTION --- */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold-primary);
+    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.brand-wrapper {
-    position: relative;
-    overflow: hidden; /* For reveal effect */
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
 }
 
 .brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 13vw;
-    line-height: 0.85;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #fff 20%, var(--gold-primary) 50%, #8b6914 80%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0; /* Init hidden */
-    transform: translateY(50px);
-    animation: textReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(10rem, 20vw, 26rem);
+    line-height: 0.82;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #fff 10%, var(--gold-primary) 50%, var(--gold-dark) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px var(--gold-primary);
+    animation: textReveal 2s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.6s;
 }
 
 .studio {
-    font-family: 'Cinzel', serif;
-    font-size: 2vw;
-    letter-spacing: 1.5em;
-    color: var(--gold-primary);
-    margin-top: 10px;
-    margin-right: -1.5em; /* Optical alignment */
-    opacity: 0;
-    animation: fadeIn 2s ease forwards 1.2s;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 4vw, 2.2rem);
+    letter-spacing: 1.2em;
+    color: var(--gold-primary);
+    margin: 1rem 0 3rem;
+    animation: fadeIn 1.8s ease forwards 1.4s;
 }
 
-/* --- LIVE SCHEDULE BADGE --- */
-.live-schedule {
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 10px 25px;
-    border-radius: 50px;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards 1.8s;
+.live-schedule, .cta-container {
+    animation: fadeIn 1.8s ease forwards 2s;
 }
 
-.live-dot {
-    width: 8px; height: 8px;
-    background: red;
-    border-radius: 50%;
-    box-shadow: 0 0 10px red;
-    animation: blink 2s infinite;
-}
-
-.schedule-text {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.8);
-    text-transform: uppercase;
-}
-
-/* --- CTA BUTTON --- */
-.cta-container {
-    margin-top: 60px;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards 2s;
-}
-
+/* CTA */
 .cta {
-    position: relative;
-    padding: 20px 60px;
-    color: var(--gold-primary);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 0.9rem;
-    transition: all 0.5s ease;
-    overflow: hidden;
-    display: inline-block;
-}
-
-.cta::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s ease;
+    padding: 1.2rem 4rem;
+    color: var(--gold-primary);
+    border: 1.5px solid var(--gold-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .cta:hover {
-    background: var(--gold-primary);
-    color: #000;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    background: var(--gold-primary);
+    color: #000;
+    transform: translate(-6px, -6px);
+    box-shadow: 8px 8px 0 #fff;
 }
 
-.cta:hover::before { left: 100%; }
-
-/* --- PHILOSOPHY (Scroll Reveal) --- */
-section {
-    padding: 150px 10%;
-    position: relative;
-}
-
+/* Reveal Text */
 .reveal-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    line-height: 1.4;
-    color: #ccc;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    line-height: 1.35;
+    color: #ddd;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    max-width: 90%;
 }
 
 .reveal-text.active {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gold-accent { color: var(--gold-primary); font-style: italic; }
 
-/* --- ANIMATIONS --- */
-@keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { to { opacity: 1; } }
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .brand { font-size: 18vw; }
-    .studio { font-size: 0.9rem; letter-spacing: 0.5em; }
-    .nav-links { display: none; }
-    nav { justify-content: center; }
-    .reveal-text { font-size: 1.8rem; }
-    * { cursor: auto; } /* Restore cursor on touch */
-    .cursor, .cursor-dot { display: none; }
-}
-/* --- GEN Z UPDATE --- */
-
-/* 1. เปลี่ยนฟอนต์รองเป็น Monospace (ฟอนต์โค้ด) ให้ดู Tech */
-.nav-links a, .schedule-text, footer, .cta {
-    font-family: 'Space Mono', monospace !important; 
-    letter-spacing: -0.5px !important; /* บีบตัวอักษรให้ชิดขึ้น สไตล์ Street */
-    font-size: 0.85rem;
-}
-
-/* 2. GLITCH EFFECT (เอฟเฟกต์ทีวีเสีย) สำหรับโลโก้แบรนด์ */
-.brand {
-    position: relative;
-    /* เปลี่ยนเป็นตัวอักษรแบบ Outline (มีแต่ขอบ) ดูแฟชั่น */
-    -webkit-text-fill-color: transparent; 
-    -webkit-text-stroke: 2px var(--gold-primary);
-    transition: all 0.3s ease;
-}
-
-.brand:hover {
-    -webkit-text-fill-color: var(--gold-primary); /* พอชี้แล้วสีเต็ม */
-    animation: glitch-anim 0.3s infinite;
-}
-
-@keyframes glitch-anim {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-/* 3. MARQUEE (ตัววิ่งวนลูป) - เทรนด์ฮิตมาก */
+/* Marquee */
 .marquee-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--gold-primary);
-    color: #000;
-    overflow: hidden;
-    white-space: nowrap;
-    z-index: 900;
-    padding: 10px 0;
-    font-family: 'Space Mono', monospace;
-    font-weight: bold;
-    text-transform: uppercase;
-    mix-blend-mode: normal; /* หรือลองใช้ difference ถ้าอยากได้สีแปลกๆ */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    overflow: hidden;
+    padding: 0.8rem 0;
+    z-index: 900;
 }
 
 .marquee-content {
-    display: inline-block;
-    animation: scroll 20s linear infinite;
-    font-size: 1rem;
-}
-
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* ปรับแต่งปุ่ม CTA ให้ดูดิบขึ้น */
-.cta {
-    background: transparent;
-    border: 1px solid var(--gold-primary);
-    border-radius: 0; /* ปุ่มเหลี่ยมคม ไม่มน */
-}
-
-.cta:hover {
-    background: var(--gold-primary);
-    box-shadow: 5px 5px 0px #fff; /* เงาแข็งๆ แบบ Pop Art */
-    transform: translate(-3px, -3px);
-}
-
-/* ปรับแต่ง Schedule Badge ให้เหมือน System Code */
-.live-schedule {
-    border: 1px solid #333;
-    background: rgba(20, 20, 20, 0.8);
-    backdrop-filter: blur(5px);
-    font-family: 'Space Mono', monospace;
-}
-/* เพิ่มความสมูทให้ตัวอักษรเวลาขยับ */
-.brand-wrapper {
-    perspective: 1000px;
-    transition: transform 0.1s ease-out;
-}
-
-.brand {
     display: inline-block;
-    /* เอฟเฟกต์สะท้อนแสงเล็กๆ แบบโลหะ */
-    text-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    white-space: nowrap;
+    animation: scrollMarquee 45s linear infinite;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
 }
 
-/* ปรับ Marquee ให้ดูแพงขึ้น */
-.marquee-container {
-    border-top: 1px solid rgba(212, 175, 55, 0.3);
-    background: rgba(5, 5, 5, 0.9);
-    backdrop-filter: blur(10px);
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: #666;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Animations */
+@keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+/* Responsive */
+@media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor, .cursor-dot { display: none; }
+    nav { padding: 1rem; justify-content: center; }
+    .nav-links { display: none; }
 }
