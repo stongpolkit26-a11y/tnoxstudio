@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNOX OFFICIAL STUDIO</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TNOX Official Studio — Architecture & Design crafted in real time.">
+    <title>TNOX OFFICIAL STUDIO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader-text">TNOX STUDIO</div>
+    </div>
 
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">TNOX</div>
+            <div class="nav-links">
+                <a href="#">Work</a>
+                <a href="#">Studio</a>
+                <a href="#">Journal</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="preloader" id="preloader">
-        <div class="loader-text">TNOX STUDIO</div>
-    </div>
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="brand-wrapper">
+                <h1 class="brand">TNOX</h1>
+            </div>
+            <div class="studio">OFFICIAL STUDIO</div>
 
-    <nav>
-        <div class="logo">TNOX</div>
-        <div class="nav-links">
-            <a href="#">Work</a>
-            <a href="#">Studio</a>
-            <a href="#">Journal</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
+            <div class="live-schedule">
+                <div class="live-dot"></div>
+                <div class="schedule-text">New Drop Daily: 10:15 &amp; 18:15</div>
+            </div>
 
-    <div class="hero">
-        <div class="brand-wrapper">
-            <h1 class="brand">TNOX</h1>
-        </div>
-        <div class="studio">OFFICIAL STUDIO</div>
+            <div class="cta-container">
+                <a href="https://www.youtube.com/@tnoxstudio" target="_blank" class="cta" aria-label="Visit TNOX Official YouTube Channel">
+                    Visit YouTube
+                </a>
+            </div>
+        </section>
 
-        <div class="live-schedule">
-            <div class="live-dot"></div>
-            <div class="schedule-text">New Drop Daily: 10:15 & 18:15</div>
-        </div>
+        <!-- Philosophy Section -->
+        <section class="philosophy">
+            <p class="reveal-text">
+                We don’t care about trends.<br>
+                We craft <span class="gold-accent">in real time</span>.<br>
+                Managed by MR. STONG, where every <span class="gold-accent">detail</span> is a promise of perfection.
+            </p>
+        </section>
+    </main>
 
-        <div class="cta-container">
-            <a href="https://www.youtube.com/@tnoxstudio" class="cta">Visit to Youtube</a>
-        </div>
-    </div>
+    <!-- Marquee Footer -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            TNOX STUDIO • THANK YOU FOR FOLLOWING • MAKE NO SENSE • MANAGED BY MR. STONG • OFFICIAL STUDIO • 
+            TNOX STUDIO • THANK YOU FOR FOLLOWING • MAKE NO SENSE • MANAGED BY MR. STONG • OFFICIAL STUDIO •
+        </div>
+    </div>
 
-    <section>
-        <p class="reveal-text">
-            We don't care about us.<br>
-            We craft <span class="gold-accent">real time</span>.
-            Managed by MR.STONG, where every is a promise of perfection.
-        </p>
-    </section>
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> TNOX STUDIO BANGKOK</p>
+    </footer>
 
-    <footer style="text-align: center; padding: 50px; color: #444; font-size: 0.8rem; letter-spacing: 2px;">
-        &copy; 2026 TNOX STUDIO BANGKOK
-    </footer>
-<div class="marquee-container">
-    <div class="marquee-content">
-        TNOX STUDIO &nbsp;•&nbsp; THANK YOU FOR FOLLOWING &nbsp;•&nbsp; MAKE NO SENSE &nbsp;•&nbsp; MANAGED BY MR.STONG &nbsp;•&nbsp; OFFICIAL STUDIO &nbsp;•&nbsp; 
-        TNOX STUDIO &nbsp;•&nbsp; THANK YOU FOR FOLLOWING &nbsp;•&nbsp; MAKE NO SENSE &nbsp;•&nbsp; MANAGED BY MR.STONG &nbsp;•&nbsp; OFFICIAL STUDIO &nbsp;•&nbsp;
-    </div>
-</div>
-    <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
