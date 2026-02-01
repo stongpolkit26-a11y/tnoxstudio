@@ -1,71 +1,85 @@
-// TNOX Studio — script (module)
+// TNOX Studio — Clean & Performant Script (module mode)
+
+'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // Preloader
-  const pre = document.getElementById('preloader');
-  if (pre) {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
     setTimeout(() => {
-      pre.classList.add('hidden');
-    }, 1200);
+      preloader.classList.add('hidden');
+    }, 1400);
   }
 
-  // Custom cursor
-  const cursor = document.createElement('div');
-  const dot    = document.createElement('div');
-  cursor.className = 'cursor';
-  dot.className    = 'cursor-dot';
-  document.body.appendChild(cursor);
-  document.body.appendChild(dot);
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const dot = document.getElementById('cursor-dot');
 
-  let mx = 0, my = 0;
-  let cx = 0, cy = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
 
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
   if (isTouch) {
-    cursor.style.display = dot.style.display = 'none';
+    cursor.style.display = 'none';
+    dot.style.display = 'none';
   }
 
-  window.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   }, { passive: true });
 
-  function tick() {
-    cx += (mx - cx) * 0.13;
-    cy += (my - cy) * 0.13;
-    cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-    dot.style.transform    = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tick);
-  }
-  if (!isTouch) tick();
+  function updateCursor() {
+    cursorX += (mouseX - cursorX) * 0.14;
+    cursorY += (mouseY - cursorY) * 0.14;
 
-  // Hover
-  document.querySelectorAll('a, button, .btn-primary').forEach(el => {
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+
+    requestAnimationFrame(updateCursor);
+  }
+
+  if (!isTouch) requestAnimationFrame(updateCursor);
+
+  // Hover effect
+  document.querySelectorAll('a, button, .cta-button').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
 
-  // Menu toggle
-  const toggle = document.getElementById('menu-toggle');
-  const overlay = document.getElementById('menu-overlay');
+  // Mobile menu
+  const toggleBtn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
   const closeBtn = document.getElementById('menu-close');
 
-  if (toggle && overlay) {
-    const open = () => {
-      overlay.classList.add('active');
+  if (toggleBtn && menu) {
+    const openMenu = () => {
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      menu.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
 
-    const cls = () => {
-      overlay.classList.remove('active');
+    const closeMenu = () => {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
       document.body.style.overflow = '';
     };
 
-    toggle.onclick = open;
-    closeBtn.onclick = cls;
-    overlay.onclick = e => { if (e.target === overlay) cls(); };
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') cls(); });
+    toggleBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.addEventListener('click', e => {
+      if (e.target === menu) closeMenu();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
   }
 
   // Scroll reveal
@@ -75,7 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -80px 0px'
+  });
 
-  document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Reduced motion check
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.style.setProperty('--transition', 'none');
+  }
+
+}, { once: true });
