@@ -1,89 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="TNOX — Studio that moves at the speed of now." />
-  <title>TNOX</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TNOX Official Studio — Where timeless craftsmanship meets real-time creation.">
+  <title>TNOX — Official Studio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Floating nav pill -->
-  <div class="nav-pill">
-    <a href="#work">Work</a>
-    <a href="#studio">Studio</a>
-    <a href="#journal">Journal</a>
-    <a href="#contact" class="highlight-link">Contact</a>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">TNOX</div>
+      <div class="preloader-line"></div>
+    </div>
   </div>
 
-  <!-- Main viewport -->
-  <div class="viewport">
+  <!-- Navigation -->
+  <header class="header">
+    <div class="logo">TNOX</div>
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#studio">Studio</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- Hero split -->
-    <section class="hero-split">
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="brand">TNOX</h1>
+        <p class="studio">Official Studio</p>
 
-      <div class="left-column">
-        <h1 class="main-heading">
-          TNOX
-        </h1>
-
-        <p class="tagline">
-          Studio that moves<br>at the speed of now
-        </p>
-
-        <div class="action-row">
-          <a href="https://www.youtube.com/@tnoxstudio" target="_blank" class="primary-action">
-            Watch latest drop
+        <div class="hero-info">
+          <div class="drop-time">Daily unveilings at 10:15 & 18:15</div>
+          <a href="https://www.youtube.com/@tnoxstudio" target="_blank" rel="noopener" class="gold-button">
+            Enter the Atelier
           </a>
-          <div class="schedule-pill">
-            Daily releases — 10:15 / 18:15
-          </div>
         </div>
-      </div>
-
-      <div class="right-column">
-        <div class="visual-block">
-          <div class="shape shape-1"></div>
-          <div class="shape shape-2"></div>
-          <div class="shape shape-3"></div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Statement block -->
-    <section class="statement-block">
-      <div class="statement-grid">
-
-        <div class="statement-item item-1">
-          <p class="label">We don’t</p>
-          <p class="value">wait</p>
-        </div>
-
-        <div class="statement-item item-2">
-          <p class="label">We</p>
-          <p class="value accent">build</p>
-        </div>
-
-        <div class="statement-item item-3">
-          <p class="label">In real</p>
-          <p class="value">time</p>
-        </div>
-
-        <div class="statement-item item-4">
-          <p class="label">Under</p>
-          <p class="value">MR. STONG</p>
-        </div>
-
       </div>
     </section>
 
+    <!-- Philosophy -->
+    <section class="philosophy">
+      <div class="philosophy-text">
+        <p class="opening">We do not chase fleeting trends.</p>
+        <p>We forge <span class="gold-span">in real time</span>,</p>
+        <p>under the discerning eye of <span class="gold-span">MR. STONG</span>,</p>
+        <p class="closing">where every detail is deliberate,<br>and perfection is not an aspiration — it is our standard.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer marquee (luxury version: slow & elegant) -->
+  <div class="footer-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>TNOX Atelier • Crafted with Precision • Managed by MR. STONG • Timeless Excellence • TNOX Atelier • Crafted with Precision • Managed by MR. STONG • Timeless Excellence • </span>
+    </div>
   </div>
 
   <script type="module" src="script.js"></script>
