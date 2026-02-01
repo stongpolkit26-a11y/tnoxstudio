@@ -1,28 +1,59 @@
-// TNOX — minimal interaction layer
+// TNOX Luxurious Edition — Minimal & Elegant Script
+
+'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Simple scroll reveal for statement items
-  const items = document.querySelectorAll('.statement-item .value');
+  // Preloader fade
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 1800);
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+  // Cursor (subtle gold ring)
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  document.body.appendChild(cursor);
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (isTouch) cursor.style.display = 'none';
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  function updateCursor() {
+    cursorX += (mouseX - cursorX) * 0.12;
+    cursorY += (mouseY - cursorY) * 0.12;
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(updateCursor);
+  }
+  if (!isTouch) requestAnimationFrame(updateCursor);
+
+  // Hover effect
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  // Scroll reveal for philosophy lines
+  const lines = document.querySelectorAll('.philosophy-text p');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, index * 120);
+        entry.target.classList.add('visible');
       }
     });
-  }, {
-    threshold: 0.4
-  });
+  }, { threshold: 0.25 });
 
-  items.forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(40px)';
-    item.style.transition = 'all 0.9s cubic-bezier(0.23,1,0.32,1)';
-    observer.observe(item);
-  });
+  lines.forEach(line => observer.observe(line));
 
-}, { passive: true });
+}, { once: true });
